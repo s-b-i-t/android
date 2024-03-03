@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Robot24</string>
+    <string name="yellow_mssg">Yellow Clicked</string>
+    <string name="button_a">Reward A</string>
+    <string name="button_b">Reward B</string>
+    <string name="button_c">Reward C</string>
+    <string name="purchased">Purchased</string>
+    <string name="insufficient">Insufficient Resources</string>
+    <string name="robot_energy_available">0</string>
+</resources>

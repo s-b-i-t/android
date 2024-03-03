@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.example.hw_2_persistent_state.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/yellow_robot"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/king_of_detroit_robot_yellow_large" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/red_robot"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/king_of_detroit_robot_red_large" />
+
+        <ImageView
+            android:id="@+id/white_robot"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:srcCompat="@drawable/king_of_detroit_robot_white_large" />
+    </LinearLayout>
+
+</LinearLayout>
