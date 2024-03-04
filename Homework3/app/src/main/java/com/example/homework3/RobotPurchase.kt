@@ -11,6 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+
 
 const val EXTRA_ROBOT_ENERGY = "com.example.homework3.current_robot_energy"
 const val EXTRA_ROBOT_PURCHASE_MADE = "com.example.homework3.current_robot_purchase_made"
@@ -23,6 +25,9 @@ class RobotPurchase : AppCompatActivity() {
     private lateinit var robot_energy_available : TextView
     private lateinit var back_button : ImageView
     private var robot_energy = 0
+
+    private val robotViewModel : RobotViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,7 @@ class RobotPurchase : AppCompatActivity() {
 
 
         robot_energy = intent.getIntExtra(EXTRA_ROBOT_ENERGY, 6)
-        robot_energy_available.setText(robot_energy.toString())
+        robot_energy_available.text = robot_energy.toString()
         val robotImageView: ImageView = findViewById(R.id.white_robot)
         robotImageView.setImageResource(robotImageResId)
 
@@ -50,17 +55,23 @@ class RobotPurchase : AppCompatActivity() {
             finish()
         }
 
+        val currentRewards = robotViewModel.getRandomRewards()
 
+        button1.text = "Reward\n${currentRewards[0].name}"
+        button2.text = "Reward\n${currentRewards[1].name}"
+        button3.text = "Reward\n${currentRewards[2].name}"
         button1.setOnClickListener{_: View ->
-            makePurchase("A", 1)
+            makePurchase(currentRewards[0].name, currentRewards[0].cost)
         }
         button2.setOnClickListener{_: View ->
-            makePurchase("B", 2)
+            makePurchase(currentRewards[1].name, currentRewards[1].cost)
         }
         button3.setOnClickListener{_: View ->
-            makePurchase("C", 3)
+            makePurchase(currentRewards[2].name, currentRewards[2].cost)
         }
     }
+
+
 
     companion object {
         fun newIntent(packageContext: Context, robot_energy: Int, robotImageResId: Int): Intent {

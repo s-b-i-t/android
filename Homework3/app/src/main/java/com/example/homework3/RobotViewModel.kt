@@ -18,13 +18,13 @@ class RobotViewModel : ViewModel(){
     )
 
     private val allRewards = listOf(
-        Reward("Reward A", 1),
-        Reward("Reward B", 2),
-        Reward("Reward C", 3),
-        Reward("Reward D", 3),
-        Reward("Reward E", 4),
-        Reward("Reward F", 4),
-        Reward("Reward G", 7)
+        Reward("A", 1),
+        Reward("B", 2),
+        Reward("C", 3),
+        Reward("D", 3),
+        Reward("E", 4),
+        Reward("F", 4),
+        Reward("G", 7)
     )
 
     private var availableRewards = allRewards.toMutableList()
