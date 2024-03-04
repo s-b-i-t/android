@@ -5,5 +5,6 @@ data class Robot(
     val largeImgRes : Int,
     val smallImgRes : Int,
     var myEnergy : Int,
-    var lastItemPurchased: String? = null
+    var lastItemPurchased: String? = null,
+    var allItemsPurchased: MutableList<String> = mutableListOf()
 )

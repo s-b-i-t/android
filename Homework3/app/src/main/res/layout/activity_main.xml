@@ -36,6 +36,21 @@
             android:layout_width="wrap_content"
             app:srcCompat="@drawable/king_of_detroit_robot_white_large" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <TextView
+        android:id="@+id/tv_current_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red Robot's Turn"/>
+
+        </LinearLayout>
+
         <Button
         android:id="@+id/purchase_button"
         android:layout_width="110dp"

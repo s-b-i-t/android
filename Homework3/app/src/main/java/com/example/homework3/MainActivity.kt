@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.viewModels
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var red_img : ImageView
     private lateinit var white_img : ImageView
     private lateinit var purchase_button : Button
+    private lateinit var tvCurrentTurn: TextView
 
     private lateinit var robotImages : MutableList<ImageView>
 
@@ -33,23 +35,38 @@ class MainActivity : AppCompatActivity() {
         red_img = findViewById(R.id.red_robot)
         white_img = findViewById(R.id.white_robot)
         purchase_button = findViewById(R.id.purchase_button)
+        tvCurrentTurn = findViewById(R.id.tv_current_turn)
+
 
         robotImages = mutableListOf(red_img, white_img, yellow_img)
+
         yellow_img.setOnClickListener{_: View ->
             advanceTurn()
+            tvCurrentTurn.text = robotViewModel.updateRobotText()
+
             Toast.makeText(this, "Turn Count: ${robotViewModel.turnCount}", Toast.LENGTH_SHORT).show()
         }
         red_img.setOnClickListener {
             advanceTurn()
+            tvCurrentTurn.text = robotViewModel.updateRobotText()
+
         }
         white_img.setOnClickListener {
             advanceTurn()
+            tvCurrentTurn.text = robotViewModel.updateRobotText()
+
             Toast.makeText(this, "MyEnergy: " +
                     "${robotViewModel.robotList[robotViewModel.turnCount-1].myEnergy}", Toast.LENGTH_SHORT).show()
         }
-        purchase_button.setOnClickListener{
-            if(robotViewModel.turnCount != 0){
-                val intent = RobotPurchase.newIntent(this, robotViewModel.robotList[robotViewModel.turnCount-1].myEnergy)
+        purchase_button.setOnClickListener {
+            if (robotViewModel.turnCount != 0) {
+                val currentRobotIndex = robotViewModel.turnCount - 1
+                val currentRobot = robotViewModel.robotList[currentRobotIndex]
+                val intent = RobotPurchase.newIntent(
+                    this,
+                    currentRobot.myEnergy,
+                    currentRobot.largeImgRes
+                )
                 purchaseLauncher.launch(intent)
             }
         }
@@ -69,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             if (robotPurchaseMade != null && newEnergyLevel != null && newEnergyLevel >= 0) {
                 val currentRobot = robotViewModel.currentRobot
                 currentRobot.lastItemPurchased = robotPurchaseMade
+                currentRobot.allItemsPurchased.add(robotPurchaseMade)
                 currentRobot.myEnergy = newEnergyLevel
             }
         }
@@ -86,8 +104,8 @@ class MainActivity : AppCompatActivity() {
         if (robotViewModel.currentRobot.lastItemPurchased != null) {
             Toast.makeText(
                 this,
-                "Last Item Purchased: ${robotViewModel.currentRobot.lastItemPurchased}",
-                Toast.LENGTH_SHORT
+                "Items Purchased: ${getAllItemsPurchased()}",
+                Toast.LENGTH_LONG
             ).show()
         }
         setImages()
@@ -124,5 +142,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-}
 
+    private fun getAllItemsPurchased(): String {
+        val purchases = robotViewModel.currentRobot.allItemsPurchased
+
+        if (purchases.isEmpty()) {
+            return "No items purchased"
+        }
+
+        return purchases.joinToString(separator = ", ")
+    }
+
+
+
+
+
+
+}
