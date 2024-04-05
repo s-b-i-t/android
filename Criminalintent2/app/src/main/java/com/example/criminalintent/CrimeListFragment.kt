@@ -53,8 +53,6 @@ override fun onViewCreated(view:View, savedInstanceState: Bundle?){
             val crimes = crimeListViewModel.loadCrimes()
             binding.crimeRecyclerView.adapter = CrimeListAdapter(crimes)
         }
-
-
     }
 }
 
@@ -69,11 +67,37 @@ override fun onDestroyView() {
 //            val crimes = crimeListViewModel.loadCrimes()
 //            binding.crimeRecyclerView.adapter = CrimeListAdapter(crimes)
 //        }
+//        Log.d(TAG, "Job launching in onStart")
 //    }
 //
 //    override fun onStop() {
+//        Log.d(TAG, "Job cancelled in onStop")
 //        super.onStop()
+//
 //        job?.cancel()
 //    }
+
+
+    override fun onResume(){
+        super.onResume()
+        job = viewLifecycleOwner.lifecycleScope.launch{
+            val crimes = crimeListViewModel.loadCrimes()
+            binding.crimeRecyclerView.adapter = CrimeListAdapter(crimes)
+        }
+        Log.d(TAG, "Job launching in onResume")
+
+
+
+    }
+
+
+//    override fun onPause() {
+//        Log.d(TAG, "Job cancelled in onPause")
+//        super.onPause()
+//
+//        job?.cancel()
+//    }
+
+
 
 }

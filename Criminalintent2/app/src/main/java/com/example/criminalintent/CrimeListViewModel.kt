@@ -19,7 +19,7 @@ class CrimeListViewModel : ViewModel() {
     init{
         viewModelScope.launch{
             Log.d(TAG,"coroutine launched")
-            delay(5000)
+//            delay(5000)
             for (i in 0 until 100){
                 val crime = Crime(
                     id = UUID.randomUUID(),
@@ -30,13 +30,15 @@ class CrimeListViewModel : ViewModel() {
                 crimes += crime
             }
             Log.d(TAG,"loading crimes finished")
+            Log.d(TAG, "Total crimes: ${crimes.size}")
+
         }
     }
 
 
     suspend fun loadCrimes(): List<Crime> {
         val result = mutableListOf<Crime>()
-        delay(5000)
+//        delay(5000)
         for (i in 0 until 100) {
             val crime = Crime(
                 id = UUID.randomUUID(),
