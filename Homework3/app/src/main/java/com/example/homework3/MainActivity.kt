@@ -146,10 +146,6 @@ class MainActivity : AppCompatActivity() {
     private fun getAllItemsPurchased(): String {
         val purchases = robotViewModel.currentRobot.allItemsPurchased
 
-        if (purchases.isEmpty()) {
-            return "No items purchased"
-        }
-
         return purchases.joinToString(separator = ", ")
     }
 

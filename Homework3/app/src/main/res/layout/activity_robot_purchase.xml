@@ -91,7 +91,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/one"
+            android:id="@+id/reward_1_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
@@ -105,7 +105,7 @@
             app:srcCompat="@drawable/energy_counter"/>
 
         <TextView
-            android:id="@+id/two"
+            android:id="@+id/reward_2_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2"
@@ -119,7 +119,7 @@
             app:srcCompat="@drawable/energy_counter"/>
 
         <TextView
-            android:id="@+id/three"
+            android:id="@+id/reward_3_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
@@ -133,4 +133,5 @@
 
 
     </LinearLayout>
+
 </LinearLayout>
